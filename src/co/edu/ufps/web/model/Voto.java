@@ -8,6 +8,7 @@ public class Voto {
 	private Timestamp fechaCreacion;
 	private Timestamp fechaVoto;
 	private String uuid;
+	private String enlace;
 	private Integer estamento;
 	private Integer candidato;
 	private Integer votante;
@@ -16,13 +17,14 @@ public class Voto {
 		
 	}
 
-	public Voto(Integer id, Timestamp fechaCreacion, Timestamp fechaVoto, String uuid, Integer estamento,
+	public Voto(Integer id, Timestamp fechaCreacion, Timestamp fechaVoto, String uuid, String enlace, Integer estamento,
 			Integer candidato, Integer votante) {
 		super();
 		this.id = id;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaVoto = fechaVoto;
 		this.uuid = uuid;
+		this.enlace = enlace;
 		this.estamento = estamento;
 		this.candidato = candidato;
 		this.votante = votante;
@@ -60,6 +62,14 @@ public class Voto {
 		this.uuid = uuid;
 	}
 
+	public String getEnlace() {
+		return enlace;
+	}
+
+	public void setEnlace(String enlace) {
+		this.enlace = enlace;
+	}
+
 	public Integer getEstamento() {
 		return estamento;
 	}
@@ -87,7 +97,8 @@ public class Voto {
 	@Override
 	public String toString() {
 		return "Voto [id=" + id + ", fechaCreacion=" + fechaCreacion + ", fechaVoto=" + fechaVoto + ", uuid=" + uuid
-				+ ", estamento=" + estamento + ", candidato=" + candidato + ", votante=" + votante + "]";
+				+ ", enlace=" + enlace + ", estamento=" + estamento + ", candidato=" + candidato + ", votante="
+				+ votante + "]";
 	}
 	
 }
