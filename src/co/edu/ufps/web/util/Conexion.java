@@ -8,12 +8,12 @@ public class Conexion {
 
 	private Connection jdbcConnection = null;
 	
-	private static final String host = "kashin.db.elephantsql.com";
-	private static final String dbName = "mpybktnb";
+	private static final String host = "queenie.db.elephantsql.com";
+	private static final String dbName = "mnjgxshj";
 	private static final String url = "jdbc:postgresql://" + host + ":5432/" + dbName;
 	private static final String driver = "org.postgresql.Driver";
-	private static final String userName = "mpybktnb";
-	private static final String password = "WhyxLHVX1nhKKGqqdEHfXNUYo4wS3HVA";
+	private static final String userName = "mnjgxshj";
+	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
 	
 	@SuppressWarnings("static-access")
 	public Connection conectar() throws SQLException {
@@ -21,7 +21,7 @@ public class Conexion {
 			try {
 				Class.forName(driver);
 				jdbcConnection = DriverManager.getConnection(this.url, this.userName, this.password);
-				System.out.println("Se conectó correctamente");
+				System.out.println("Se conectÃ³ correctamente");
 				
 			} catch (ClassNotFoundException e) {
 				throw new SQLException(e);
