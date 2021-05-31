@@ -1,3 +1,6 @@
+<%@page import="co.edu.ufps.web.model.*"%>
+<%@page import="co.edu.ufps.web.DAO.*"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -54,6 +57,15 @@
 							class="form-control" placeholder="Id" name="id" >
 					</div>
 					<div class="form-group">
+						<select>
+      				 	<option>Seleccionar estamento</option> 
+       					 <% for(Estamento e: new EstamentoDAO().list()){%>
+          			 	<option>${e.getDescripcion()} </option>
+       						 <% }%>
+       					<input type="hidden" name="estamento" />
+					</select>
+					</div>
+					<div class="form-group">
 						<label for="validation01">Nombre</label> <input type="text"
 							class="form-control" placeholder="Nombre" name="nombre">
 					</div>
@@ -62,16 +74,26 @@
 							class="form-control" placeholder="Email" name="email">
 					</div>
 					<div class="form-group">
+						<select>
+      				 	<option>Tipo de documento</option> 
+       					 <% for(TipoDocumento t: new TipoDocumentoDAO().list()){%>
+          			 	<option>${t.getDescripcion()} </option>
+       						 <% }%>
+       					<input type="hidden" name="tipodocumento" />
+					</select>
+					</div>
+					<div class="form-group">
 						<label for="validation01">Documento</label> <input type="text"
 							class="form-control" placeholder="Documento" name="documento">
 					</div>
 					<div class="form-group">
-						<label for="validation01">Tipo Documento</label> <input type="number"
-							class="form-control" placeholder="Tipo Documento" name="tipodocumento">
-					</div>
-					<div class="form-group">
-						<label for="validation01">Eleccion</label> <input type="number"
-							class="form-control" placeholder="Eleccion" name="eleccion">
+						<select>
+      				 	<option>Seleccionar eleccion</option> 
+       					 <% for(Eleccion e: new EleccionDAO().list()){%>
+          			 	<option>${e.getNombre()} </option>
+       						 <% }%>
+       					<input type="hidden" name="eleccion" />
+					</select>
 					</div>
 					
 						<input type="submit" class="btn btn-success" value="Agregar"

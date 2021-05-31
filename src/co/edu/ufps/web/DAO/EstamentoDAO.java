@@ -1,12 +1,10 @@
 package co.edu.ufps.web.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +14,11 @@ import co.edu.ufps.web.util.Conexion;
 public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 	private Conexion con;
 	private Connection conection;
-	private static final String INSERTAR_ELECCION_SQL = "INSERT INTO eleccion(id,eleccion,descripcion) VALUES (?,?,?)";
-	private static final String ELIMINAR_ELECCION_SQL = "DELETE FROM eleccion WHERE id=?";
-	private static final String ACTUALIZAR_ELECCION_SQL = "UPDATE eleccion SET eleccion=?,descripcion=? WHERE id=?";
-	private static final String BUSCAR_ELECCION_ID_SQL = "SELECT * FROM eleccion WHERE id=?";
-	private static final String LISTAR_ELECCIONES_SQL = "SELECT * FROM eleccion";
+	private static final String INSERTAR_ESTAMENTO_SQL = "INSERT INTO estamento(id,ESTAMENTO,descripcion) VALUES (?,?,?)";
+	private static final String ELIMINAR_ESTAMENTO_SQL = "DELETE FROM estamento WHERE id=?";
+	private static final String ACTUALIZAR_ESTAMENTO_SQL = "UPDATE estamento SET estamento=?,descripcion=? WHERE id=?";
+	private static final String BUSCAR_ESTAMENTO_ID_SQL = "SELECT * FROM estamento WHERE id=?";
+	private static final String LISTAR_ESTAMENTOS_SQL = "SELECT * FROM estamento";
 
 	public EstamentoDAO() throws SQLException {
 		this.con = new Conexion();
@@ -33,7 +31,7 @@ public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 		this.con.conectar();
 		this.conection = this.con.conectar();
 
-		PreparedStatement prepared = this.conection.prepareStatement(INSERTAR_ELECCION_SQL);
+		PreparedStatement prepared = this.conection.prepareStatement(INSERTAR_ESTAMENTO_SQL);
 		prepared.setInt(1, el.getId());
 		prepared.setInt(2, el.getEleccion());
 		prepared.setString(3, el.getDescripcion());
@@ -52,7 +50,7 @@ public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 		this.con.conectar();
 		this.conection = this.con.conectar();
 
-		PreparedStatement prepared = this.conection.prepareStatement(ACTUALIZAR_ELECCION_SQL);
+		PreparedStatement prepared = this.conection.prepareStatement(ACTUALIZAR_ESTAMENTO_SQL);
 		prepared.setInt(1, el.getEleccion());
 		prepared.setString(2, el.getDescripcion());
 		prepared.setInt(3, el.getId());
@@ -71,14 +69,14 @@ public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 		this.con.conectar();
 		this.conection = this.con.conectar();
 
-		PreparedStatement prepared=this.conection.prepareStatement(BUSCAR_ELECCION_ID_SQL);
+		PreparedStatement prepared=this.conection.prepareStatement(BUSCAR_ESTAMENTO_ID_SQL);
 		prepared.setInt(1, id);
 
 		ResultSet rs = prepared.executeQuery();
 
 		if (rs!=null && rs.next()) {
 			
-			e = new Estamento(id, rs.getInt("fechainicio"), rs.getString("descripcion"));
+			e = new Estamento(id, rs.getInt("eleccion"), rs.getString("descripcion"));
 		}
 		rs.close();
 		this.con.desconectar();
@@ -93,7 +91,7 @@ public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 		this.con.conectar();
 		this.conection = this.con.conectar();
 
-		PreparedStatement prepared = this.conection.prepareStatement(ELIMINAR_ELECCION_SQL);
+		PreparedStatement prepared = this.conection.prepareStatement(ELIMINAR_ESTAMENTO_SQL);
 		prepared.setInt(1, id);
 
 		rowElimined = prepared.executeUpdate() > 0;
@@ -111,7 +109,7 @@ public class EstamentoDAO implements CrudDAO<Estamento,Integer> {
 		this.conection = this.con.conectar();
 
 		Statement statement = this.conection.createStatement();
-		ResultSet rs = statement.executeQuery(LISTAR_ELECCIONES_SQL);
+		ResultSet rs = statement.executeQuery(LISTAR_ESTAMENTOS_SQL);
 
 		while (rs.next()) {
 			Integer id = rs.getInt("id");
