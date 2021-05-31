@@ -16,7 +16,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>Actualizar Candidato</title>
+<title>Actualizar Votante</title>
 </head>
 <body>
 
@@ -25,7 +25,7 @@
 			style="background-color: #38C953">
 			<div>
 				<a href="https://www.javaguides.net" class="navbar-brand"><h1>Actualizar
-						Candidatos</h1> Cyclists Management App </a>
+						Votantes</h1> Cyclists Management App </a>
 			</div>
 		</nav>
 	</header>
@@ -33,48 +33,48 @@
 	<hr>
 	<div id="botones" class="container text-left">
 		
-		<a href="<%=request.getContextPath()%>/CandidatoServlet?action=index" class="btn btn-success">Ir al
+		<a href="<%=request.getContextPath()%>/VotanteServlet?action=index" class="btn btn-success">Ir al
 			menú</a> 			
-		<a href="<%=request.getContextPath()%>/vistaCandidatos/registro.jsp"
-					class="btn btn-success">Registrar nuevo Candidato</a>
-		<a href="<%=request.getContextPath()%>/vistaCandidatos/mostrar.jsp"
-			class="btn btn-success">Listar Candidatos</a>
+		<a href="<%=request.getContextPath()%>/vistaVotantes/registro.jsp"
+					class="btn btn-success">Registrar nuevo Votante</a>
+		<a href="<%=request.getContextPath()%>/vistaVotantes/mostrar.jsp"
+			class="btn btn-success">Listar Votantes</a>
 	</div>
 
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/CandidatoServlet?action=editar" method="post">
+				<form action="${pageContext.request.contextPath}/VotanteServlet?action=editar" method="post">
 					
 					<div class="form-group">
 						<label for="validation01">Id</label> <input type="number"
-							class="form-control" value='<c:out value="${candidato.id}"></c:out>'
+							class="form-control" value='<c:out value="${votante.id}"></c:out>'
 							placeholder="Id" name="id" >
 					</div>
 					<div class="form-group">
-						<label for="validation01">Documento</label> <input type="text"
-							class="form-control" value='<c:out value="${candidato.documento}"></c:out>'
-							 placeholder="Documento" name="documento">
-					</div>
-					<div class="form-group">
 						<label for="validation01">Nombre</label> <input type="text"
-							class="form-control" value='<c:out value="${candidato.nombre}"></c:out>'
+							class="form-control" value='<c:out value="${votante.nombre}"></c:out>'
 							placeholder="Nombre" name="nombre">
 					</div>
 					<div class="form-group">
-						<label for="validation01">Apellido</label> <input type="text"
-							class="form-control" value='<c:out value="${candidato.apellido}"></c:out>'
-							placeholder="Apellido" name="apellido">
+						<label for="validation01">Email</label> <input type="email"
+							class="form-control" value='<c:out value="${votante.email}"></c:out>'
+							 placeholder="Email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="validation01">Documento</label> <input type="text"
+							class="form-control" value='<c:out value="${votante.documento}"></c:out>'
+							 placeholder="Documento" name="documento">
+					</div>
+					<div class="form-group">
+						<label for="validation01">Tipo Documento</label> <input type="number"
+							class="form-control" value='<c:out value="${votante.tipodocumento}"></c:out>'
+							placeholder="Tipo Documento" name="tipodocumento">
 					</div>
 					<div class="form-group">
 						<label for="validation01">Eleccion</label> <input type="number"
-							class="form-control" value='<c:out value="${candidato.eleccion}"></c:out>'
+							class="form-control" value='<c:out value="${votante.eleccion}"></c:out>'
 							placeholder="Eleccion" name="eleccion">
-					</div>
-					<div class="form-group">
-						<label for="validation01">Numero</label> <input type="number"
-							class="form-control" value='<c:out value="${candidato.numero}"></c:out>'
-							placeholder="Numero" name="numero">
 					</div>
 									
 						<input type="submit" class="btn btn-success" value="Guardar"
