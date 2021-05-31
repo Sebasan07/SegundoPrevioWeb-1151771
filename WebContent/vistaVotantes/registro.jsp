@@ -57,15 +57,6 @@
 							class="form-control" placeholder="Id" name="id" >
 					</div>
 					<div class="form-group">
-						<select>
-      				 	<option>Seleccionar estamento</option> 
-       					 <% for(Estamento e: new EstamentoDAO().list()){%>
-          			 	<option>${e.getDescripcion()} </option>
-       						 <% }%>
-       					<input type="hidden" name="estamento" />
-					</select>
-					</div>
-					<div class="form-group">
 						<label for="validation01">Nombre</label> <input type="text"
 							class="form-control" placeholder="Nombre" name="nombre">
 					</div>
