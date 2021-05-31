@@ -20,6 +20,7 @@ public class CandidatoDAO implements CrudDAO<Candidato,Integer> {
 	private static final String ACTUALIZAR_CANDIDATO_SQL = "UPDATE candidato SET documento=?,nombre=?,apellido=?,eleccion=?,numero=? WHERE id=?";
 	private static final String BUSCAR_CANDIDATO_ID_SQL = "SELECT * FROM candidato WHERE id=?";
 	private static final String LISTAR_CANDIDATOS_SQL = "SELECT * FROM candidato";
+	private static final String BUSCAR_ULTIMO_ID_SQL = "SELECT MAX(id) FROM candidato";
 
 	public CandidatoDAO() throws SQLException {
 		this.con = new Conexion();
@@ -90,6 +91,26 @@ public class CandidatoDAO implements CrudDAO<Candidato,Integer> {
 		this.con.desconectar();
 
 		return e;
+	}
+	
+	public Integer buscarUltimoID() throws SQLException {
+		Integer id=0;
+
+		this.con.conectar();
+		this.conection = this.con.conectar();
+
+		PreparedStatement prepared = this.conection.prepareStatement(BUSCAR_ULTIMO_ID_SQL);
+
+		ResultSet rs = prepared.executeQuery();
+
+		if (rs!=null && rs.next()) {
+			
+			id=Integer.parseInt(rs.getString(1));
+		}
+		rs.close();
+		this.con.desconectar();
+
+		return id;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package co.edu.ufps.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -93,9 +94,24 @@ public class VotanteServlet extends HttpServlet {
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		Votante vt = new Votante(Integer.parseInt(request.getParameter("id")), request.getParameter("nombre"),request.getParameter("email"), request.getParameter("documento"),  
-				Integer.parseInt(request.getParameter("tipodocumento")), Integer.parseInt(request.getParameter("eleccion")));
+		
+		Integer tipodocumento = Integer.parseInt(request.getParameter("tipodocumento").split(" - ")[0]);
+		
+		if(votanteDAO.buscarPorDocumento(request.getParameter("documento"))!=null) {
+
+			request.setAttribute("mensaje", "Ya está inscrita la persona");
+		
+		}else {
+			request.setAttribute("mensaje", "Se pudo inscribir correctamente");
+		
+		
+		Integer eleccion = Integer.parseInt(request.getParameter("eleccion").split(" - ")[0]);
+		Integer id = votanteDAO.buscarUltimoID();
+		
+		Votante vt = new Votante(id+1, request.getParameter("nombre"),request.getParameter("email"), request.getParameter("documento"),  
+				tipodocumento, eleccion);
 		votanteDAO.insertar(vt);
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("indexVotantes.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -110,6 +126,7 @@ public class VotanteServlet extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("vistaVotantes/mostrar.jsp");
 		List<Votante> list = votanteDAO.list();
+		System.out.println(list);
 		request.setAttribute("lista", list);
 		dispatcher.forward(request, response);
 	}

@@ -1,6 +1,7 @@
 <%@page import="co.edu.ufps.web.model.*"%>
 <%@page import="co.edu.ufps.web.DAO.*"%>
 <%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -52,10 +53,7 @@
 		<div class="card">
 			<div class="card-body">
 				<form action="${pageContext.request.contextPath}/VotanteServlet?action=register" method="post">
-					<div class="form-group">
-						<label for="validation01">Id</label> <input type="number"
-							class="form-control" placeholder="Id" name="id" >
-					</div>
+		
 					<div class="form-group">
 						<label for="validation01">Nombre</label> <input type="text"
 							class="form-control" placeholder="Nombre" name="nombre">
@@ -65,32 +63,31 @@
 							class="form-control" placeholder="Email" name="email">
 					</div>
 					<div class="form-group">
-						<select>
+						<select name="tipodocumento">
       				 	<option>Tipo de documento</option> 
        					 <% for(TipoDocumento t: new TipoDocumentoDAO().list()){%>
-          			 	<option>${t.getDescripcion()} </option>
+          			 	<option value="<%=t.getId()%>"><%=t.getId()%> - <%=t.getDescripcion()%> </option>
        						 <% }%>
-       					<input type="hidden" name="tipodocumento" />
 					</select>
+					
 					</div>
 					<div class="form-group">
 						<label for="validation01">Documento</label> <input type="text"
 							class="form-control" placeholder="Documento" name="documento">
 					</div>
 					<div class="form-group">
-						<select>
-      				 	<option>Seleccionar eleccion</option> 
+						<select name="eleccion">
+  						<option>Seleccionar eleccion</option> 
        					 <% for(Eleccion e: new EleccionDAO().list()){%>
-          			 	<option>${e.getNombre()} </option>
+          			 	<option value="<%=e.getId()%>"><%=e.getId()%> - <%=e.getNombre()%> </option>
        						 <% }%>
-       					<input type="hidden" name="eleccion" />
-					</select>
+						</select>
 					</div>
 					
 						<input type="submit" class="btn btn-success" value="Agregar"
 							name="agregar">
-					
 				</form>
+				 
 			</div>
 		</div>
 	</div>

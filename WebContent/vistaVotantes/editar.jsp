@@ -46,10 +46,9 @@
 			<div class="card-body">
 				<form action="${pageContext.request.contextPath}/VotanteServlet?action=editar" method="post">
 					
-					<div class="form-group">
-						<label for="validation01">Id</label> <input type="number"
+					<div class="form-group"><input type="hidden"
 							class="form-control" value='<c:out value="${votante.id}"></c:out>'
-							placeholder="Id" name="id" >
+							placeholder="Id" name="id">
 					</div>
 					<div class="form-group">
 						<label for="validation01">Nombre</label> <input type="text"
@@ -68,7 +67,7 @@
 					</div>
 					<div class="form-group">
 						<label for="validation01">Tipo Documento</label> <input type="number"
-							class="form-control" value='<c:out value="${votante.tipodocumento}"></c:out>'
+							class="form-control" value='<c:out value="${votante.tipoDocumento}"></c:out>'
 							placeholder="Tipo Documento" name="tipodocumento">
 					</div>
 					<div class="form-group">

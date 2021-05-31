@@ -18,6 +18,8 @@ public class VotanteDAO implements CrudDAO<Votante,Integer> {
 	private static final String ELIMINAR_VOTANTE_SQL = "DELETE FROM votante WHERE id=?";
 	private static final String ACTUALIZAR_VOTANTE_SQL = "UPDATE votante SET nombre=?,email=?,documento=?,tipodocumento=?,eleccion=? WHERE id=?";
 	private static final String BUSCAR_VOTANTE_ID_SQL = "SELECT * FROM votante WHERE id=?";
+	private static final String BUSCAR_VOTANTE_DOCUMENTO_SQL = "SELECT * FROM votante WHERE documento=?";
+	private static final String BUSCAR_ULTIMO_ID_SQL = "SELECT MAX(id) FROM votante";
 	private static final String LISTAR_VOTANTES_SQL = "SELECT * FROM votante";
 
 	public VotanteDAO() throws SQLException {
@@ -91,6 +93,49 @@ public class VotanteDAO implements CrudDAO<Votante,Integer> {
 		return v;
 	}
 
+	public Votante buscarPorDocumento(String doc) throws SQLException {
+		Votante v = null;
+
+		this.con.conectar();
+		this.conection = this.con.conectar();
+
+		PreparedStatement prepared = this.conection.prepareStatement(BUSCAR_VOTANTE_DOCUMENTO_SQL);
+		prepared.setString(1, doc);
+
+		ResultSet rs = prepared.executeQuery();
+
+		if (rs!=null && rs.next()) {
+			
+			v = new Votante(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"), rs.getString("documento"),
+					rs.getInt("tipodocumento"),rs.getInt("eleccion"));
+		}
+		rs.close();
+		this.con.desconectar();
+
+		return v;
+	}
+	
+	public Integer buscarUltimoID() throws SQLException {
+		Integer id=0;
+
+		this.con.conectar();
+		this.conection = this.con.conectar();
+
+		PreparedStatement prepared = this.conection.prepareStatement(BUSCAR_ULTIMO_ID_SQL);
+
+		ResultSet rs = prepared.executeQuery();
+
+		if (rs!=null && rs.next()) {
+			if(rs.getString(1)!=null) {
+			id=Integer.parseInt(rs.getString(1));
+			}
+		}
+		rs.close();
+		this.con.desconectar();
+
+		return id;
+	}
+	
 	@Override
 	public boolean eliminar(Integer id) throws SQLException {
 		boolean rowElimined = false;

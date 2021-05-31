@@ -1,5 +1,5 @@
-<%@page import="co.edu.ufps.web.model.Eleccion"%>
-<%@page import="co.edu.ufps.web.DAO.EleccionDAO"%>
+<%@page import="co.edu.ufps.web.model.*"%>
+<%@page import="co.edu.ufps.web.DAO.*"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -39,7 +39,6 @@
 		</nav>
 	</header>
 
-
 	<hr>
 	<div id="botones" class="container text-left">
 		
@@ -52,10 +51,7 @@
 		<div class="card">
 			<div class="card-body">
 				<form action="${pageContext.request.contextPath}/CandidatoServlet?action=register" method="post">
-					<div class="form-group">
-						<label for="validation01">Id</label> <input type="number"
-							class="form-control" placeholder="Id" name="id" >
-					</div>
+				
 					<div class="form-group">
 						<label for="validation01">Documento</label> <input type="text"
 							class="form-control" placeholder="Documento" name="documento">
@@ -69,13 +65,15 @@
 							class="form-control" placeholder="Apellido" name="apellido">
 					</div>
 					<div class="form-group">
-					<select>
-      				 	<option>Seleccionar eleccion</option> 
+
+       					
+       					<select name="eleccion">
+  						<option>Seleccionar eleccion</option> 
        					 <% for(Eleccion e: new EleccionDAO().list()){%>
-          			 	<option>${p.getNombre()} </option>
+          			 	<option value="<%=e.getId()%>"><%=e.getId()%> - <%=e.getNombre()%> </option>
        						 <% }%>
-       					<input type="hidden" name="eleccion" />
-					</select>
+						</select>
+
 					</div>
 					<div class="form-group">
 						<label for="validation01">Numero</label> <input type="number"

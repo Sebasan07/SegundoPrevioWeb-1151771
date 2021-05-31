@@ -17,7 +17,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<title>Mostrar Candidatos</title>
+<title>Mostrar Votantes</title>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 			style="background-color: #38C953">
 			<div>
 				<a href="https://www.javaguides.net" class="navbar-brand"><h1>Listar
-						Candidatos</h1> Candidatos Management App </a>
+						Votantes</h1> Votantes Management App </a>
 			</div>
 		</nav>
 	</header>
@@ -38,10 +38,10 @@
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/vistaCandidatos/registro.jsp"
-					class="btn btn-success">Registrar nuevo Candidato</a> <a
-					href="<%=request.getContextPath()%>/CandidatoServlet?action=mostrar"
-					class="btn btn-success">Mostrar listado de Candidatos</a>
+				<a href="<%=request.getContextPath()%>/vistaVotantes/registro.jsp"
+					class="btn btn-success">Registrar nuevo Votante</a> <a
+					href="<%=request.getContextPath()%>/VotanteServlet?action=mostrar"
+					class="btn btn-success">Mostrar listado de Votantes</a>
 			</div>
 			<br>
 			<table class="table table-bordered">
@@ -49,29 +49,31 @@
 					<tr>
 						<td>ID</td>
 						<td>NOMBRE</td>
-						<td>APELLIDO</td>
+						<td>EMAIL</td>
 						<td>DOCUMENTO</td>
+						<td>TIPODOCUMENTO</td>
 						<td>ELECCION</td>
-						<td>NUMERO</td>
 						<td>ACTION</td>
 
 					</tr>
 				</thead>
 				<tbody>
 					<!--   for (Todo todo: todos) {  -->
-					<c:forEach var="candidato" items="${lista}">
+					<c:forEach var="votante" items="${lista}">
 						<tr>
-							<td><c:out value="${candidato.id}" /></td>
-							<td><c:out value="${candidato.documento}" /></td>
-							<td><c:out value="${candidato.nombre}" /></td>
-							<td><c:out value="${candidato.apellido}" /></td>
-							<td><c:out value="${candidato.eleccion}" /></td>
-							<td><c:out value="${candidato.numero}" /></td>
+						<c:if test="${votante.id!=null }">
+						
+							<td><c:out value="${votante.id}" /></td>
+							<td><c:out value="${votante.nombre}" /></td>
+							<td><c:out value="${votante.email}" /></td>
+							<td><c:out value="${votante.documento}" /></td>
+							<td><c:out value="${votante.tipoDocumento}" /></td>
+							<td><c:out value="${votante.eleccion}" /></td>
 							<td><a
-								href="<%=request.getContextPath()%>/CandidatoServlet?action=showedit&id=<c:out value="${candidato.id}" />">Editar</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-								href="CandidatoServlet?action=eliminar&id=<c:out value="${candidato.id}"/>">Eliminar</a>
+								href="<%=request.getContextPath()%>/VotanteServlet?action=showedit&id=<c:out value="${votante.id}" />">Editar</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+								href="VotanteServlet?action=eliminar&id=<c:out value="${votante.id}"/>">Eliminar</a>
 							</td>
-
+						</c:if>
 						</tr>
 					</c:forEach>
 					<!-- } -->

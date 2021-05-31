@@ -18,6 +18,12 @@
 </head>
 <body>
 
+<style>
+
+	#mensaje{
+	color:red;
+	}
+</style>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: #38C953">
@@ -36,6 +42,24 @@
 			<a href="VotanteServlet?action=mostrar" class="btn btn-success">Mostrar listado de Votantes</a>
 		</div>
 	</div>
+<% 
+String mensaje=String.valueOf(request.getAttribute("mensaje"));
 
+            if(request.getAttribute("mensaje")!=null) 
+            { 
+            	if(mensaje.charAt(0)=='Y'){
+            	%>          
+                <hr>
+                <input id="mensaje" type="text" style="width:20%; margin-left:50px" name="txtResultado" value="<%=request.getAttribute("mensaje")%>" disabled/>
+        <%
+           		 }else{
+            	%>
+            	<hr>
+            	<input id="mensaje" type="text" style="width:20%; color:green; margin-left:50px" name="txtResultado" value="<%=request.getAttribute("mensaje")%>" disabled/> 	
+           <%  }
+            }
+
+%>
+                
 </body>
 </html>

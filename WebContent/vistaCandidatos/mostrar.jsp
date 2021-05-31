@@ -62,9 +62,9 @@
 					<c:forEach var="candidato" items="${lista}">
 						<tr>
 							<td><c:out value="${candidato.id}" /></td>
-							<td><c:out value="${candidato.documento}" /></td>
 							<td><c:out value="${candidato.nombre}" /></td>
 							<td><c:out value="${candidato.apellido}" /></td>
+							<td><c:out value="${candidato.documento}" /></td>							
 							<td><c:out value="${candidato.eleccion}" /></td>
 							<td><c:out value="${candidato.numero}" /></td>
 							<td><a

@@ -46,10 +46,9 @@
 			<div class="card-body">
 				<form action="${pageContext.request.contextPath}/CandidatoServlet?action=editar" method="post">
 					
-					<div class="form-group">
-						<label for="validation01">Id</label> <input type="number"
+					<div class="form-group"><input type="hidden"
 							class="form-control" value='<c:out value="${candidato.id}"></c:out>'
-							placeholder="Id" name="id" >
+							placeholder="Id" name="id">
 					</div>
 					<div class="form-group">
 						<label for="validation01">Documento</label> <input type="text"

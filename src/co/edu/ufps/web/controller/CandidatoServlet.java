@@ -94,8 +94,12 @@ public class CandidatoServlet extends HttpServlet {
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		Candidato cl = new Candidato(Integer.parseInt(request.getParameter("id")), request.getParameter("documento"), request.getParameter("nombre"), 
-				request.getParameter("apellido"), Integer.parseInt(request.getParameter("eleccion")), Integer.parseInt(request.getParameter("numero")));
+		
+		Integer eleccion = Integer.parseInt(request.getParameter("eleccion").split(" - ")[0]);
+		Integer id = candidatoDAO.buscarUltimoID();
+		
+		Candidato cl = new Candidato(id+1, request.getParameter("documento"), request.getParameter("nombre"), 
+				request.getParameter("apellido"), eleccion, Integer.parseInt(request.getParameter("numero")));
 		candidatoDAO.insertar(cl);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("indexCandidatos.jsp");
 		dispatcher.forward(request, response);
