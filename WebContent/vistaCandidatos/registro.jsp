@@ -1,3 +1,6 @@
+<%@page import="co.edu.ufps.web.model.Eleccion"%>
+<%@page import="co.edu.ufps.web.DAO.EleccionDAO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -66,8 +69,13 @@
 							class="form-control" placeholder="Apellido" name="apellido">
 					</div>
 					<div class="form-group">
-						<label for="validation01">Eleccion</label> <input type="number"
-							class="form-control" placeholder="Eleccion" name="eleccion">
+					<select>
+      				 	<option>Seleccionar eleccion</option> 
+       					 <% for(Eleccion e: new EleccionDAO().list()){%>
+          			 	<option>${p.getNombre()} </option>
+       						 <% }%>
+       					<input type="hidden" name="eleccion" />
+					</select>
 					</div>
 					<div class="form-group">
 						<label for="validation01">Numero</label> <input type="number"
